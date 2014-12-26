@@ -9,12 +9,12 @@
 			<input type="text" class="form-control" id="abstract" placeholder="Summary of the news" ng-model="news.abstract">
 		</div>
 		<div class="form-group">
-			<label for="news_pic">Image</label>
-			<input type="file" id="news_pic">
-			<p class="help-block">Upload the main new image</p>
+			<label for="news_pic">News Image</label>
+			<div id="news_pic" upload-button url="http://localhost:5000/upload_news_image"
+				on-success="onNewsPicUpload(response)"></div>
+			<img src="{{news.news_pic}}" width="200" ng-show="news.news_pic">
 		</div>
 	</form>
-
 	<div class="row">
 		<a class="btn btn-lg btn-block btn-primary">Insert Text</a>
 		<a class="btn btn-lg btn-block btn-default">Insert Image</a>
