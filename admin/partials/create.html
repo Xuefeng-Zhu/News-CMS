@@ -1,0 +1,24 @@
+<div class="container">
+	<form>
+		<div class="form-group">
+			<label for="title">title</label>
+			<input type="text" class="form-control" id="title" placeholder="Enter Title" ng-model="news.title">
+		</div>
+		<div class="form-group">
+			<label for="abstract">Abstract</label>
+			<input type="text" class="form-control" id="abstract" placeholder="Summary of the news" ng-model="news.abstract">
+		</div>
+		<div class="form-group">
+			<label for="news_pic">Image</label>
+			<input type="file" id="news_pic">
+			<p class="help-block">Upload the main new image</p>
+		</div>
+	</form>
+
+	<div class="row">
+		<a class="btn btn-lg btn-block btn-primary">Insert Text</a>
+		<a class="btn btn-lg btn-block btn-default">Insert Image</a>
+	</div>
+	<br>
+	<div class="btn btn-lg btn-success" ng-click="submit()">Submit</div>
+	</div> <!-- /container -->
