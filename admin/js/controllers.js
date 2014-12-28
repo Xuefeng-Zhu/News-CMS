@@ -48,9 +48,18 @@ controller('CreateCtrl', ['$scope', '$http', 'upload',
 
     }
 ])
-    .controller('MyCtrl2', [
+    .controller('ViewCtrl', ['$scope', '$routeParams', '$http',
+        function($scope, $routeParams, $http) {
+        	var title = $routeParams['title'];
 
-        function() {
+        	$http({
+        		url: 'http://localhost:5000/news',
+        		method: 'GET',
+        		params: {title: title}
+        	})
+        	.success(function(response){
+        		$scope.news = response;
+        	})
 
         }
     ]);
