@@ -3,9 +3,9 @@
 		<h2>{{news.title}}</h2>
 		<span class="label label-default">{{news.date}}</span>
 	</div>
-	<div class="well">{{news.abstract}}</div>
+	<!-- <div class="well">{{news.abstract}}</div> -->
 	<div ng-repeat="item in news.content">
 		<p ng-if="item.type == 'text'">{{item.details}}</p>
-		<img ng-if="item.type == 'img'" src="{{item.details}}" width="50%" >
+		<img ng-if="item.type == 'img'" src="{{item.details}}" width="100%" >
 	</div>
 </div>
