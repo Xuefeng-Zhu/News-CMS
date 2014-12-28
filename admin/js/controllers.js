@@ -20,12 +20,26 @@ controller('CreateCtrl', ['$scope', '$http', 'upload',
                 type: 'text',
                 details: $scope.newText
             });
-            
+
             $scope.newText = null;
+        }
+
+
+        $scope.insertImage = function() {
+            $scope.news.content.push({
+                type: 'img',
+                details: $scope.newImage
+            });
+
+            $scope.newImage = null;
         }
 
         $scope.onNewsPicUpload = function(response) {
             $scope.news.news_pic = response.data.url;
+        }
+
+        $scope.onNewImageUpload = function(response){
+        	$scope.newImage = response.data.url;
         }
 
     }

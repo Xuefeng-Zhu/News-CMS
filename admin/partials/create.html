@@ -15,21 +15,19 @@
 			<img src="{{news.news_pic}}" width="200" ng-show="news.news_pic">
 		</div>
 	</form>
-
 	<div ng-repeat="item in news.content">
 		<p ng-if="item.type == 'text'">{{item.details}}</p>
-				
+		<img ng-if="item.type == 'img'" src="{{item.details}}" width="50%" >
 	</div>
-
 	<div class="row">
 		<a class="btn btn-lg btn-block btn-primary" data-toggle="modal" data-target="#textModal">Insert Text</a>
-		<a class="btn btn-lg btn-block btn-default">Insert Image</a>
+		<a class="btn btn-lg btn-block btn-default" data-toggle="modal" data-target="#imageModal">Insert Image</a>
 	</div>
 	<br>
 	<div class="btn btn-lg btn-success" ng-click="submit()">Submit</div>
 	</div> <!-- /container -->
 	<!-- textModal -->
-	<div class="modal fade" id="textModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="textModal" tabindex="-1" role="dialog" aria-labelledby="textModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -44,6 +42,31 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="insertText()">Enter</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /imageModal -->
+	<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Insert Image</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="newImage">News Image</label>
+							<div id="newImage" upload-button url="http://localhost:5000/upload_news_image"
+							on-success="onNewImageUpload(response)"></div>
+							<img src="{{newImage}}" width="200" ng-show="newImage">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="insertImage()">Enter</button>
 				</div>
 			</div>
 		</div>
