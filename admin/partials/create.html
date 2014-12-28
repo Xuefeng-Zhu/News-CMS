@@ -11,14 +11,40 @@
 		<div class="form-group">
 			<label for="news_pic">News Image</label>
 			<div id="news_pic" upload-button url="http://localhost:5000/upload_news_image"
-				on-success="onNewsPicUpload(response)"></div>
+			on-success="onNewsPicUpload(response)"></div>
 			<img src="{{news.news_pic}}" width="200" ng-show="news.news_pic">
 		</div>
 	</form>
+
+	<div ng-repeat="item in news.content">
+		<p ng-if="item.type == 'text'">{{item.details}}</p>
+				
+	</div>
+
 	<div class="row">
-		<a class="btn btn-lg btn-block btn-primary">Insert Text</a>
+		<a class="btn btn-lg btn-block btn-primary" data-toggle="modal" data-target="#textModal">Insert Text</a>
 		<a class="btn btn-lg btn-block btn-default">Insert Image</a>
 	</div>
 	<br>
 	<div class="btn btn-lg btn-success" ng-click="submit()">Submit</div>
 	</div> <!-- /container -->
+	<!-- textModal -->
+	<div class="modal fade" id="textModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Insert Paragraph</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<textarea class="form-control" rows="10" placeholder="Text" ng-model="newText"></textarea>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="insertText()">Enter</button>
+				</div>
+			</div>
+		</div>
+	</div>
