@@ -8,7 +8,7 @@ angular.module('myApp.controllers', [])
         	var title = $routeParams['title'];
 
         	$http({
-        		url: 'http://localhost:5000/news',
+        		url: 'https://lit-everglades-2593.herokuapp.com/news',
         		method: 'GET',
         		params: {title: title}
         	})
