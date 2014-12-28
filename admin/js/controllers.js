@@ -3,6 +3,7 @@
 /* Controllers */
 
 var url = 'https://lit-everglades-2593.herokuapp.com';
+// var url = 'http://localhost:5000'
 
 angular.module('myApp.controllers', []).
 controller('CreateCtrl', ['$scope', '$http', 'upload',
@@ -47,7 +48,6 @@ controller('CreateCtrl', ['$scope', '$http', 'upload',
         $scope.onNewImageUpload = function(response){
         	$scope.newImage = response.data.url;
         }
-
     }
 ])
     .controller('ViewCtrl', ['$scope', '$routeParams', '$http',
