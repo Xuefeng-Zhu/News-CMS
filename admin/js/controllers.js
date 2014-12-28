@@ -2,6 +2,8 @@
 
 /* Controllers */
 
+var url = 'https://lit-everglades-2593.herokuapp.com';
+
 angular.module('myApp.controllers', []).
 controller('CreateCtrl', ['$scope', '$http', 'upload',
     function($scope, $http, upload) {
@@ -9,7 +11,7 @@ controller('CreateCtrl', ['$scope', '$http', 'upload',
         $scope.news.content = [];
 
         $scope.submit = function() {
-            $http.put('http://localhost:5000/news', angular.copy($scope.news))
+            $http.put(url + '/news', angular.copy($scope.news))
                 .success(function() {
                     alert("success");
                 })
@@ -53,7 +55,7 @@ controller('CreateCtrl', ['$scope', '$http', 'upload',
         	var title = $routeParams['title'];
 
         	$http({
-        		url: 'http://localhost:5000/news',
+        		url: url + '/news',
         		method: 'GET',
         		params: {title: title}
         	})

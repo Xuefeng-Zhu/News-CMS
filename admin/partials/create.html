@@ -10,7 +10,7 @@
 		</div>
 		<div class="form-group">
 			<label for="news_pic">News Image</label>
-			<div id="news_pic" upload-button url="http://localhost:5000/upload_news_image"
+			<div id="news_pic" upload-button url="https://lit-everglades-2593.herokuapp.com/upload_news_image"
 			on-success="onNewsPicUpload(response)"></div>
 			<img src="{{news.news_pic}}" width="200" ng-show="news.news_pic">
 		</div>
@@ -58,7 +58,7 @@
 					<form>
 						<div class="form-group">
 							<label for="newImage">News Image</label>
-							<div id="newImage" upload-button url="http://localhost:5000/upload_news_image"
+							<div id="newImage" upload-button url="https://lit-everglades-2593.herokuapp.com/upload_news_image"
 							on-success="onNewImageUpload(response)"></div>
 							<img src="{{newImage}}" width="200" ng-show="newImage">
 						</div>
