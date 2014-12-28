@@ -5,14 +5,18 @@
 angular.module('myApp.controllers', []).
 controller('CreateCtrl', ['$scope', '$http', 'upload',
     function($scope, $http, upload) {
-        $scope.news = {}
-        $scope.news.content = []
+        $scope.news = {};
+        $scope.news.content = [];
 
         $scope.submit = function() {
             $http.put('http://localhost:5000/news', angular.copy($scope.news))
                 .success(function() {
-                    alert("success")
-                });
+                    alert("success");
+                })
+                .error(function(response){
+                	console.log(response);
+                	alert("Title is empty or has already existed");
+                })
         }
 
         $scope.insertText = function() {
