@@ -5,7 +5,8 @@
 angular.module('myApp', [
   'ngRoute',
   'myApp.controllers',
-  'lr.upload'
+  'lr.upload',
+  'ngSanitize'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/create', {templateUrl: 'partials/create.html', controller: 'CreateCtrl'});
