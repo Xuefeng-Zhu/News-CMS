@@ -39,8 +39,8 @@ controller('CreateCtrl', ['$scope', '$http', 'upload',
         }
     }
 ])
-    .controller('ViewCtrl', ['$scope', '$routeParams', '$http',
-        function($scope, $routeParams, $http) {
+    .controller('ViewCtrl', ['$scope', '$routeParams', '$http', '$sce',
+        function($scope, $routeParams, $http, $sce) {
         	var title = $routeParams['title'];
 
         	$http({
@@ -50,6 +50,7 @@ controller('CreateCtrl', ['$scope', '$http', 'upload',
         	})
         	.success(function(response){
         		$scope.news = response;
+                $scope.news.content = $sce.trustAsHtml($scope.news.content);
         	})
 
         }
