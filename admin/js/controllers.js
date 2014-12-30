@@ -2,8 +2,8 @@
 
 /* Controllers */
 
-var url = 'https://lit-everglades-2593.herokuapp.com';
-// var url = 'http://localhost:5000'
+// var url = 'https://lit-everglades-2593.herokuapp.com';
+var url = 'http://localhost:5000'
 
 angular.module('myApp.controllers', []).
 controller('CreateCtrl', ['$scope', '$http', 'upload',
@@ -12,6 +12,8 @@ controller('CreateCtrl', ['$scope', '$http', 'upload',
         $scope.news.content = [];
 
         $scope.submit = function() {
+            $scope.news.content = quill.getHTML();
+
             $http.put(url + '/news', angular.copy($scope.news))
                 .success(function() {
                     alert("success");
@@ -22,21 +24,8 @@ controller('CreateCtrl', ['$scope', '$http', 'upload',
                 })
         }
 
-        $scope.insertText = function() {
-            $scope.news.content.push({
-                type: 'text',
-                details: $scope.newText
-            });
-
-            $scope.newText = null;
-        }
-
-
         $scope.insertImage = function() {
-            $scope.news.content.push({
-                type: 'img',
-                details: $scope.newImage
-            });
+            quill.insertEmbed(quill.getLength(), 'image', $scope.newImage);
 
             $scope.newImage = null;
         }
