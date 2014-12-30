@@ -5,6 +5,10 @@
 			<input type="text" class="form-control" id="title" placeholder="Enter Title" ng-model="news.title">
 		</div>
 		<div class="form-group">
+			<label for="tags">Tag</label>
+			<tag-editor id="tags" ng-model="tags" output="name"></tag-editor>
+		</div>
+		<div class="form-group">
 			<label for="abstract">Abstract</label>
 			<input type="text" class="form-control" id="abstract" placeholder="Summary of the news" ng-model="news.abstract">
 		</div>
@@ -166,39 +170,33 @@
 			</div>
 		</div>
 	</div>
-
-
-<script type="text/javascript">
-	var quill; // Expose as global so people can easily try out the API
-
-$(document).ready(function() {
-    quill = new Quill('#editor', {
-        modules: {
-            'toolbar': {
-                container: '#toolbar'
-            },
-            'image-tooltip': true,
-            'link-tooltip': true
-        },
-        theme: 'snow'
-    });
-
-    $('.quill-wrapper').tooltip({
-        trigger: 'manual'
-    });
-    var tooltipTimer = setTimeout(function() {
-        $('.quill-wrapper').tooltip('show');
-    }, 2500);
-
-    quill.once('selection-change', function(hasFocus) {
-        $('#editor').toggleClass('focus', hasFocus);
-        // Hack for inability to scroll on mobile
-        if (/mobile/i.test(navigator.userAgent)) {
-            $('#editor').css('height', quill.root.scrollHeight + 30) // 30 for padding
-        }
-        $('.quill-wrapper').tooltip('destroy');
-        clearTimeout(tooltipTimer);
-    });
-
-});
-</script>
+	<script type="text/javascript">
+		var quill; // Expose as global so people can easily try out the API
+	$(document).ready(function() {
+	quill = new Quill('#editor', {
+	modules: {
+	'toolbar': {
+	container: '#toolbar'
+	},
+	'image-tooltip': true,
+	'link-tooltip': true
+	},
+	theme: 'snow'
+	});
+	$('.quill-wrapper').tooltip({
+	trigger: 'manual'
+	});
+	var tooltipTimer = setTimeout(function() {
+	$('.quill-wrapper').tooltip('show');
+	}, 2500);
+	quill.once('selection-change', function(hasFocus) {
+	$('#editor').toggleClass('focus', hasFocus);
+	// Hack for inability to scroll on mobile
+	if (/mobile/i.test(navigator.userAgent)) {
+	$('#editor').css('height', quill.root.scrollHeight + 30) // 30 for padding
+	}
+	$('.quill-wrapper').tooltip('destroy');
+	clearTimeout(tooltipTimer);
+	});
+	});
+	</script>

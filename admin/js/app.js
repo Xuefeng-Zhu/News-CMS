@@ -6,7 +6,8 @@ angular.module('myApp', [
   'ngRoute',
   'myApp.controllers',
   'lr.upload',
-  'ngSanitize'
+  'ngSanitize',
+  'ngTagEditor'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/create', {templateUrl: 'partials/create.html', controller: 'CreateCtrl'});
