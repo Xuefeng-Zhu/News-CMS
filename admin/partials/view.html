@@ -6,4 +6,11 @@
 	<div class="well">{{news.abstract}}</div>
 	<div ng-bind-html="news.content">
 	</div>
+	<div class="media" ng-repeat="comment in news.comments">
+		<div class="media-body">
+			<h4 class="media-heading">{{comment.username}}</h4>
+			<i>{{comment.date}}</i>
+			<p>{{comment.content}}</p>
+		</div>
+	</div>
 </div>

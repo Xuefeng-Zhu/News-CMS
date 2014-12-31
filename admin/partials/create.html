@@ -2,7 +2,7 @@
 	<form>
 		<div class="form-group">
 			<label for="title">title</label>
-			<input type="text" class="form-control" id="title" placeholder="Enter Title" ng-model="news.title">
+			<input type="text" class="form-control" id="title" placeholder="Enter Title" ng-model="news.title" maxlength="120">
 		</div>
 		<div class="form-group">
 			<label for="tags">Tag</label>
@@ -10,7 +10,7 @@
 		</div>
 		<div class="form-group">
 			<label for="abstract">Abstract</label>
-			<input type="text" class="form-control" id="abstract" placeholder="Summary of the news" ng-model="news.abstract">
+			<input type="text" class="form-control" id="abstract" placeholder="Summary of the news" ng-model="news.abstract" maxlength="200">
 		</div>
 		<div class="form-group">
 			<label for="news_pic">News Image</label>
