@@ -38,7 +38,7 @@ controller('CreateCtrl', ['$scope', '$http', 'upload', '$sce',
             $http.get([url, 'load_article', $scope.link].join('/'))
             .success(function(response){
                 $scope.news = response;
-                quill.setText(response.content);
+                quill.setHTML(response.content);
             })
         }
 
