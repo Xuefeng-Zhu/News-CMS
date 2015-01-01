@@ -34,6 +34,14 @@ controller('CreateCtrl', ['$scope', '$http', 'upload', '$sce',
             $scope.news.content = $sce.trustAsHtml(quill.getHTML());
         }
 
+        $scope.loadArticle = function(){
+            $http.get([url, 'load_article', $scope.link].join('/'))
+            .success(function(response){
+                $scope.news = response;
+                quill.setText(response.content);
+            })
+        }
+
         $scope.insertImage = function() {
             quill.insertEmbed(quill.getLength(), 'image', $scope.newImage);
 
