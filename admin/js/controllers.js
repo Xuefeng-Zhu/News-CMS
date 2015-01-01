@@ -6,8 +6,8 @@ var url = 'https://lit-everglades-2593.herokuapp.com';
 // var url = 'http://localhost:5000'
 
 angular.module('myApp.controllers', []).
-controller('CreateCtrl', ['$scope', '$http', 'upload',
-    function($scope, $http, upload) {
+controller('CreateCtrl', ['$scope', '$http', 'upload', '$sce',
+    function($scope, $http, upload, $sce) {
         $scope.news = {};
         $scope.tags = []
 
@@ -28,6 +28,10 @@ controller('CreateCtrl', ['$scope', '$http', 'upload',
                 });
             $scope.news = {};
             $scope.tags = [];
+        }
+
+        $scope.preview = function(){
+            $scope.news.content = $sce.trustAsHtml(quill.getHTML());
         }
 
         $scope.insertImage = function() {
