@@ -17,5 +17,5 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/create'});
 }]);
 
-var url = 'https://lit-everglades-2593.herokuapp.com';
-// var url = 'http://localhost:5000'
+// var url = 'https://lit-everglades-2593.herokuapp.com';
+var url = 'http://localhost:5000'
