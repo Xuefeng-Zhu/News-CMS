@@ -23,9 +23,12 @@
 			</a>
 		</div>
 	</div>
-	<br>
-	<div class="btn btn-lg btn-default pull-left" ng-hide="page==0" ng-click="changePage(-1)">Prev</div>
-	<div class="btn btn-lg btn-default pull-right" ng-show="newsList.length==10" ng-click="changePage(1)">Next</div>
+	<nav>
+		<ul class="pager">
+			<li class="previous" ng-hide="page==0" ng-click="changePage(-1)"><a><span aria-hidden="true">&larr;</span> Older</a></li>
+			<li class="next" ng-show="newsList.length==10" ng-click="changePage(1)"><a>Newer <span aria-hidden="true">&rarr;</span></a></li>
+		</ul>
+	</nav>
 </div>
 <script type="text/javascript">
 	$("#list").height($(window).height()-130);
