@@ -8,6 +8,17 @@
 			<label for="tags">Tag</label>
 			<tag-editor id="tags" ng-model="tags" output="name" fetch="suggestions.json"></tag-editor>
 		</div>
-		<div class="btn btn-lg btn-success pull-right" ng-click="submit()">Search</div>
+		<div class="btn btn-lg btn-success pull-right" ng-click="searchNews()">Search</div>
 	</form>
+</div>
+<div class="col-md-8">
+	<div class="media" ng-repeat="news in newsList">
+		<a class="media-left">
+			<img src="{{news.news_pic}}" width="200px">
+		</a>
+		<div class="media-body">
+			<h4 class="media-heading">{{news.title}}</h4>
+			<p>{{news.abstract}}</p>
+		</div>
+	</div>
 </div>

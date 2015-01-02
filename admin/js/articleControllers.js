@@ -18,12 +18,14 @@ angular.module('articleControllers', [])
                 $http.put(url + '/news', angular.copy($scope.news))
                     .success(function() {
                         alert("success");
+                        $scope.news = {};
+                        $scope.tags = [];
+                        quill.setText('');
                     })
                     .error(function(response) {
                         alert("Title is empty or has already existed");
                     });
-                $scope.news = {};
-                $scope.tags = [];
+
             }
 
             $scope.preview = function() {
