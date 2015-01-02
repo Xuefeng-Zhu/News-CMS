@@ -12,13 +12,21 @@
 	</form>
 </div>
 <div class="col-md-8">
-	<div class="media" ng-repeat="news in newsList">
-		<a class="media-left">
-			<img src="{{news.news_pic}}" width="200px">
-		</a>
-		<div class="media-body">
-			<h4 class="media-heading">{{news.title}}</h4>
-			<p>{{news.abstract}}</p>
+	<div id="list" style="overflow-y: scroll">
+		<div class="media" ng-repeat="news in newsList">
+			<a class="media-left">
+				<img src="{{news.news_pic}}" width="200px" height="100px">
+			</a>
+			<a class="media-body" href="#/view/{{news.title}}" target="_blank">
+				<h4 class="media-heading">{{news.title}}</h4>
+				<p>{{news.abstract}}</p>
+			</a>
 		</div>
 	</div>
+	<br>
+	<div class="btn btn-lg btn-default pull-left" ng-hide="page==0" ng-click="changePage(-1)">Prev</div>
+	<div class="btn btn-lg btn-default pull-right" ng-show="newsList.length==10" ng-click="changePage(1)">Next</div>
 </div>
+<script type="text/javascript">
+	$("#list").height($(window).height()-130);
+</script>

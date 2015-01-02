@@ -25,6 +25,11 @@ controller('ListCtrl', ['$scope', '$http',
                 })
         }
 
+        $scope.changePage = function(num){
+            $scope.page += num;
+            $scope.searchNews();
+        }
+
         $scope.searchNews();
     }
 ]);

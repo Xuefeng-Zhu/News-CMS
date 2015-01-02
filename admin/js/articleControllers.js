@@ -20,6 +20,7 @@ angular.module('articleControllers', [])
                         alert("success");
                         $scope.news = {};
                         $scope.tags = [];
+                        $scope.link = '';
                         quill.setText('');
                     })
                     .error(function(response) {
