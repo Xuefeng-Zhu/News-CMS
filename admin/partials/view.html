@@ -1,5 +1,9 @@
 <div class="container">
-	<a class="btn btn-lg btn-primary pull-right" href="#/edit/{{news.title}}">Edit</a>
+	<div class="pull-right">
+		<a class="btn btn-lg btn-primary" href="#/edit/{{news.title}}">Edit</a>
+		<a class="btn btn-lg btn-danger" ng-click="deleteNews()">Delete</a>
+	</div>
+	
 	<div class="page-header">
 		<h2>{{news.title}}</h2>
 		<span class="label label-default">{{news.date}}</span>
