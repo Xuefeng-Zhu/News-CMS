@@ -14,6 +14,7 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/create', {templateUrl: 'partials/create.html', controller: 'CreateCtrl'});
   $routeProvider.when('/list', {templateUrl: 'partials/list.html', controller: 'ListCtrl'});
   $routeProvider.when('/view/:title', {templateUrl: 'partials/view.html', controller: 'ViewCtrl'});
+  $routeProvider.when('/edit/:title', {templateUrl: 'partials/edit.html', controller: 'EditCtrl'});
   $routeProvider.otherwise({redirectTo: '/create'});
 }]);
 
