@@ -41,6 +41,12 @@ angular.module('ngTagEditor', [])
 				$scope.options.apiOnly = $attrs.apiOnly || false;
 				$scope.search = '';
 			
+				$scope.$watch('search', function(){
+					$http.get($scope.options.fetch + $scope.search).success(function(data){
+						$scope.suggestions = data.data;
+						/* console.log(data); */
+					});
+				});
 				$scope.add = function(id, name){
 					$scope.tags.push({'id':id, 'name':name});
 					$scope.search = '';
