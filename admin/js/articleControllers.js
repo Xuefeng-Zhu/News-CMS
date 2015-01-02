@@ -135,5 +135,20 @@ angular.module('articleControllers', [])
                 $scope.news.content = $sce.trustAsHtml($scope.news.content);
             })
 
+            $scope.deleteNews = function() {
+                if (confirm("Are you sure to delete this news?") == true) {
+                    $http({
+                        url: url + '/news',
+                        method: 'DELETE',
+                        params: {
+                            id: $scope.news.id
+                        }
+                    }).success(function() {
+                            alert("success");
+                            window.close();
+                        })
+                }
+            }
+
         }
     ]);
