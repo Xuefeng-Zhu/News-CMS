@@ -3,8 +3,14 @@
 /* Controllers */
 
 angular.module('articleControllers', [])
-    .controller('CreateCtrl', ['$scope', '$http', 'upload', '$sce',
-        function($scope, $http, upload, $sce) {
+    .controller('CreateCtrl', ['$scope', '$http', 'upload', '$sce', '$cookies', '$location',
+        function($scope, $http, upload, $sce, $cookies, $location) {
+            if (!$cookies['token']) {
+                alert('Please login in');
+                $location.path('/login');
+            }
+            $http.defaults.headers.common['token'] = $cookies['token'];
+
             $scope.news = {};
             $scope.tags = []
 
@@ -55,8 +61,14 @@ angular.module('articleControllers', [])
             }
         }
     ])
-    .controller('EditCtrl', ['$scope', '$http', 'upload', '$sce', '$routeParams', '$location',
-        function($scope, $http, upload, $sce, $routeParams, $location) {
+    .controller('EditCtrl', ['$scope', '$http', 'upload', '$sce', '$routeParams', '$cookies', '$location',
+        function($scope, $http, upload, $sce, $routeParams, $cookies, $location) {
+            if (!$cookies['token']) {
+                alert('Please login in');
+                $location.path('/login');
+            }
+            $http.defaults.headers.common['token'] = $cookies['token'];
+
             var title = $routeParams['title'];
 
             $http({
@@ -144,9 +156,9 @@ angular.module('articleControllers', [])
                             id: $scope.news.id
                         }
                     }).success(function() {
-                            alert("success");
-                            window.close();
-                        })
+                        alert("success");
+                        window.close();
+                    })
                 }
             }
 
