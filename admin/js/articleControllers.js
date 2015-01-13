@@ -9,7 +9,7 @@ angular.module('articleControllers', [])
                 alert('Please login in');
                 $location.path('/login');
             }
-            $http.defaults.headers.common['token'] = $rootScope['token'];
+            $http.defaults.headers.common['token'] = $cookies['token'];
 
             $scope.news = {};
             $scope.tags = []
@@ -67,7 +67,7 @@ angular.module('articleControllers', [])
                 alert('Please login in');
                 $location.path('/login');
             }
-            $http.defaults.headers.common['token'] = $rootScope['token'];
+            $http.defaults.headers.common['token'] = $cookies['token'];
 
             var title = $routeParams['title'];
 

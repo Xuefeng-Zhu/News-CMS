@@ -9,7 +9,7 @@ controller('ListCtrl', ['$scope', '$http', '$cookies', '$location',
             alert('Please login in');
             $location.path('/login');
         }
-        $http.defaults.headers.common['token'] = $rootScope['token'];
+        $http.defaults.headers.common['token'] = $cookies['token'];
 
         $scope.page = 0;
         $scope.tags = []
