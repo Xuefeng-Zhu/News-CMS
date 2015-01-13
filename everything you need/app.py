@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, make_response
 from flask.ext.restful import Api
 from flask.ext.restful.utils import cors
 from model import db, redis_store
@@ -33,7 +33,6 @@ api.add_resource(SearchNewsAPI, '/search_news')
 api.add_resource(CommentAPI, '/comment')
 
 api.add_resource(ArticleAPI, '/load_article/<path:link>')
-
 
 if __name__ == '__main__':
     app.run(debug=True)

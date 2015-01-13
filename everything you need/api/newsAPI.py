@@ -77,7 +77,7 @@ class NewsAPI(Resource):
         if id is None or title is None:
             abort(400)
 
-        news = News.objects(id=id).first()
+        news = News.objects(id=id).exclude('comments').first()
         if news is None:
             abort(400)
 
