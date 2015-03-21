@@ -1,0 +1,35 @@
+<div class="col-md-4">
+	<form>
+		<div class="form-group">
+			<label for="search">Search</label>
+			<input type="text" class="form-control" id="search" ng-model="search" maxlength="120">
+		</div>
+		<div class="form-group">
+			<label for="tags">Tag</label>
+			<tag-editor id="tags" ng-model="tags" output="name" fetch="suggestions.json"></tag-editor>
+		</div>
+		<div class="btn btn-lg btn-success pull-right" ng-click="searchNews()">Search</div>
+	</form>
+</div>
+<div class="col-md-8">
+	<div id="list" style="overflow-y: scroll">
+		<div class="media" ng-repeat="news in newsList">
+			<a class="media-left">
+				<img src="{{news.news_pic}}" width="200px" height="100px">
+			</a>
+			<a class="media-body" href="#/view/{{news.title}}" target="_blank">
+				<h4 class="media-heading">{{news.title}}</h4>
+				<p>{{news.abstract}}</p>
+			</a>
+		</div>
+	</div>
+	<nav>
+		<ul class="pager">
+			<li class="previous" ng-hide="page==0" ng-click="changePage(-1)"><a><span aria-hidden="true">&larr;</span> Older</a></li>
+			<li class="next" ng-show="newsList.length==10" ng-click="changePage(1)"><a>Newer <span aria-hidden="true">&rarr;</span></a></li>
+		</ul>
+	</nav>
+</div>
+<script type="text/javascript">
+	$("#list").height($(window).height()-130);
+</script>

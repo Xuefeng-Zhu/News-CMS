@@ -1,0 +1,31 @@
+Create News 
+curl localhost:5000/news -X PUT -d "title=new1" -d "abstract=bla bla bla" -d "news_pic=http://www.cnbeta.com" -d "content=bla bla bla"
+
+Edit News 
+curl localhost:5000/news -X POST -d "id=54a62c56077d3500077f23c7" -d "title=new1" -d "abstract=bla bla bla" -d "news_pic=http://www.cnbeta.com" -d "content=bla bla bla"
+
+Delete News 
+curl localhost:5000/news -X DELETE -d "id=54a62c56077d3500077f23c7"
+
+Upload News Image 
+curl --form file=@icon.png --form press=OK localhost:5000/upload_news_image/ -X POST
+
+Get News List
+curl localhost:5000/news_list/tagA+tagB/page #
+
+Search News List
+curl localhost:5000/search_news -X POST -d "search=test" -d "tags=[]" -d "page=0"
+
+Get News detail
+curl localhost:5000/news -X GET -d "title=xxx"
+
+Put Comment:
+curl localhost:5000/comment -X PUT --header "token: from login api" -d "title=test" -d "username=test-user" -d "content=bla bla bla"
+
+Get Comment:
+curl localhost:5000/comment -X GET --header "token: from login api" -d "title=test" 
+
+Load Article:
+curl localhost:5000/load_article/http://www.engadget.com/2015/01/01/us-supreme-court-moving-to-digital-filing-system-in-2016/ -X GET
+
+S3_KEY=mykey S3_SECRET=mysecret application

@@ -1,0 +1,77 @@
+<div class="nav nav-stacked" style="position: fixed">
+	<li role="presentation"><a data-toggle="modal" data-target="#articleModal">Load Article</a></li>
+	<li role="presentation"><a data-toggle="modal" data-target="#previewModal" ng-click="preview()">Preview</a></li>
+</div>
+<div class="container">
+	<form>
+		<div class="form-group">
+			<label for="title">Title</label>
+			<input type="text" class="form-control" id="title" placeholder="Enter Title" ng-model="news.title" maxlength="120">
+		</div>
+		<div class="form-group">
+			<label for="tags">Tag</label>
+			<tag-editor id="tags" ng-model="tags" output="name" fetch="suggestions.json"></tag-editor>
+		</div>
+		<div class="form-group">
+			<label for="abstract">Abstract</label>
+			<input type="text" class="form-control" id="abstract" placeholder="Summary of the news" ng-model="news.abstract" maxlength="200">
+		</div>
+		<div class="form-group">
+			<label for="news_pic">News Image</label>
+			<div id="news_pic" upload-button url="https://lit-everglades-2593.herokuapp.com/upload_news_thumbnail"
+			on-success="onNewsPicUpload(response)"></div>
+			<img src="{{news.news_pic}}" width="200" ng-show="news.news_pic">
+		</div>
+		<ng-include src="'partials/editor.html'"></ng-include>
+	</form>
+	
+	<br>
+	<div class="btn btn-lg btn-success" ng-click="submit()">Submit</div>
+</div>
+<!-- /container -->
+<!-- /articleModal -->
+<div class="modal fade" id="articleModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Load Article</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="link">link</label>
+						<input type="text" class="form-control" id="link" placeholder="Enter link" ng-model="link">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="loadArticle()">Enter</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /previewModal -->
+<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Preview</h4>
+			</div>
+			<div class="modal-body">
+				<div class="page-header">
+					<h2>{{news.title}}</h2>
+					<span class="label label-default">{{news.date}}</span>
+				</div>
+				<div class="well" ng-show="news.abstract">
+					<span class="label label-primary">Abstract:</span>
+					{{news.abstract}}
+				</div>
+				<div ng-bind-html="news.content">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

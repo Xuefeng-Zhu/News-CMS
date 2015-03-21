@@ -1,0 +1,8 @@
+{
+	"status": "success",
+	"data": [
+		{"id": 1, "name": "LoL"},
+		{"id": 2, "name": "Dota"},
+		{"id": 3, "name": "Hearthstone"}
+	]
+}

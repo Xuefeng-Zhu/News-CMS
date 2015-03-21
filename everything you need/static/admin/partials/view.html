@@ -1,0 +1,21 @@
+<div class="container">
+	<div class="pull-right">
+		<a class="btn btn-lg btn-primary" href="#/edit/{{news.title}}">Edit</a>
+		<a class="btn btn-lg btn-danger" ng-click="deleteNews()">Delete</a>
+	</div>
+	
+	<div class="page-header">
+		<h2>{{news.title}}</h2>
+		<span class="label label-default">{{news.date}}</span>
+	</div>
+	<div class="well" ng-show="news.abstract">{{news.abstract}}</div>
+	<div ng-bind-html="news.content">
+	</div>
+	<div class="media" ng-repeat="comment in news.comments">
+		<div class="media-body">
+			<h4 class="media-heading">{{comment.username}}</h4>
+			<i>{{comment.date}}</i>
+			<p>{{comment.content}}</p>
+		</div>
+	</div>
+</div>
