@@ -132,9 +132,10 @@ angular.module('articleControllers', [])
             }
         }
     ])
-    .controller('ViewCtrl', ['$scope', '$routeParams', '$http', '$sce',
-        function($scope, $routeParams, $http, $sce) {
+    .controller('ViewCtrl', ['$scope', '$routeParams', '$http', '$sce', '$cookies',
+        function($scope, $routeParams, $http, $sce, $cookies) {
             var title = $routeParams['title'];
+            $http.defaults.headers.common['token'] = $cookies['token'];
 
             $http({
                 url: url + '/news',
