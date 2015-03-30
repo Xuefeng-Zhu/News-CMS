@@ -7,6 +7,9 @@ import urlparse
 
 class ArticleAPI(Resource):
 
+    def options(self):
+        pass
+
     def get(self, link):
         if urlparse.urlparse(link).scheme not in ('http', 'https'):
             abort(400)
