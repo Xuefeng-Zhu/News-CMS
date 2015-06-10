@@ -5,12 +5,6 @@
 angular.module('listControllers', []).
 controller('ListCtrl', ['$scope', '$http', '$cookies', '$location',
     function($scope, $http, $cookies, $location) {
-        if (! $cookies['token']){
-            alert('Please login in');
-            $location.path('/login');
-        }
-        $http.defaults.headers.common['token'] = $cookies['token'];
-
         $scope.page = 0;
         $scope.tags = []
 

@@ -1,8 +1,8 @@
 {
 	"status": "success",
 	"data": [
-		{"id": 1, "name": "LoL"},
-		{"id": 2, "name": "Dota"},
-		{"id": 3, "name": "Hearthstone"}
+		{"id": 1, "name": "Technology"},
+		{"id": 2, "name": "Sports"},
+		{"id": 3, "name": "Science"}
 	]
 }

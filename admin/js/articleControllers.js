@@ -5,12 +5,6 @@
 angular.module('articleControllers', [])
     .controller('CreateCtrl', ['$scope', '$http', 'upload', '$sce', '$cookies', '$location',
         function($scope, $http, upload, $sce, $cookies, $location) {
-            if (!$cookies['token']) {
-                alert('Please login in');
-                $location.path('/login');
-            }
-            $http.defaults.headers.common['token'] = $cookies['token'];
-
             $scope.news = {};
             $scope.tags = []
 
@@ -63,12 +57,6 @@ angular.module('articleControllers', [])
     ])
     .controller('EditCtrl', ['$scope', '$http', 'upload', '$sce', '$routeParams', '$cookies', '$location',
         function($scope, $http, upload, $sce, $routeParams, $cookies, $location) {
-            if (!$cookies['token']) {
-                alert('Please login in');
-                $location.path('/login');
-            }
-            $http.defaults.headers.common['token'] = $cookies['token'];
-
             var title = $routeParams['title'];
 
             $http({
@@ -135,7 +123,6 @@ angular.module('articleControllers', [])
     .controller('ViewCtrl', ['$scope', '$routeParams', '$http', '$sce', '$cookies',
         function($scope, $routeParams, $http, $sce, $cookies) {
             var title = $routeParams['title'];
-            $http.defaults.headers.common['token'] = $cookies['token'];
 
             $http({
                 url: url + '/news',
