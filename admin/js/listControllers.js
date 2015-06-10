@@ -3,10 +3,10 @@
 /* Controllers */
 
 angular.module('listControllers', []).
-controller('ListCtrl', ['$scope', '$http', '$cookies', '$location',
-    function($scope, $http, $cookies, $location) {
+controller('ListCtrl', ['$scope', '$http', '$cookies',
+    function($scope, $http, $cookies) {
         $scope.page = 0;
-        $scope.tags = []
+        $scope.tags = [];
 
         $scope.searchNews = function() {
             var data = {
@@ -16,7 +16,7 @@ controller('ListCtrl', ['$scope', '$http', '$cookies', '$location',
             }
 
             angular.forEach($scope.tags, function(tag) {
-                    data.tags.push(tag.name);
+                data.tags.push(tag.name);
             })
 
             $http.post(url + '/search_news', data)
@@ -25,7 +25,7 @@ controller('ListCtrl', ['$scope', '$http', '$cookies', '$location',
                 })
         }
 
-        $scope.changePage = function(num){
+        $scope.changePage = function(num) {
             $scope.page += num;
             $scope.searchNews();
         }
