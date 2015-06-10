@@ -23,14 +23,14 @@ angular.module('articleControllers', [])
 
                 $http.put(url + '/news', angular.copy($scope.news))
                     .success(function() {
-                        alert("success");
+                        swal("Success!", "A new article has been created!", "success");
                         $scope.news = {};
                         $scope.tags = [];
                         $scope.link = '';
                         quill.setText('');
                     })
                     .error(function(response) {
-                        alert("Title is empty or has already existed");
+                        swal("Error!", "Title is empty or has already existed!", "error")
                     });
 
             }
