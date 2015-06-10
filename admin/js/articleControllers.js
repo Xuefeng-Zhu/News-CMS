@@ -55,8 +55,8 @@ angular.module('articleControllers', [])
             }
         }
     ])
-    .controller('EditCtrl', ['$scope', '$http', 'upload', '$sce', '$routeParams',
-        function($scope, $http, upload, $sce, $routeParams) {
+    .controller('EditCtrl', ['$scope', '$http', 'upload', '$sce', '$routeParams', '$location',
+        function($scope, $http, upload, $sce, $routeParams, $location) {
             var title = $routeParams['title'];
 
             $http({
@@ -152,7 +152,7 @@ angular.module('articleControllers', [])
                             id: $scope.news.id
                         }
                     }).success(function() {
-                        $scope.$emit("newDelete");
+                        $cookies["refreshList"] = "true";
 
                         swal({
                             title: "Deleted!",

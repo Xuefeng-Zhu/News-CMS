@@ -5,6 +5,7 @@
 angular.module('listControllers', []).
 controller('ListCtrl', ['$scope', '$http', '$cookies',
     function($scope, $http, $cookies) {
+        $scope.cookies = $cookies;
         $scope.page = 0;
         $scope.tags = [];
 
@@ -31,5 +32,12 @@ controller('ListCtrl', ['$scope', '$http', '$cookies',
         }
 
         $scope.searchNews();
+
+        $scope.$watch('cookies.refreshList', function(){
+            if ($scope.cookies['refreshList']){
+                $scope.searchNews();
+                $scope.cookies['refreshList'] = undefined;
+            }            
+        });
     }
 ]);
