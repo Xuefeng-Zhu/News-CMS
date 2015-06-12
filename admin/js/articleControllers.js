@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('articleControllers', [])
-    .controller('CreateCtrl', ['$scope', '$http', 'upload', '$sce',
-        function($scope, $http, upload, $sce) {
+    .controller('CreateCtrl', ['$scope', '$http', 'upload', '$sce', '$location',
+        function($scope, $http, upload, $sce, $location) {
             $scope.news = {};
             $scope.tags = [];
 
@@ -17,14 +17,25 @@ angular.module('articleControllers', [])
 
                 $http.put(url + '/news', angular.copy($scope.news))
                     .success(function() {
-                        swal("Success!", "A new article has been created!", "success");
+                        swal({
+                            title: 'Success!',
+                            text: 'A new article has been created!',
+                            type: 'success',
+                            showCancelButton: true,
+                            cancelButtonText: 'Create More',
+                            confirmButtonText: 'Go to News List',
+                            closeOnConfirm: false
+                        }, function() {
+                            $location.path('/path')
+                        });
+
                         $scope.news = {};
                         $scope.tags = [];
                         $scope.link = '';
                         quill.setText('');
                     })
                     .error(function(response) {
-                        swal("Error!", "Title is empty or has already existed!", "error");
+                        swal('Error!', 'Title is empty or has already existed!', 'error');
                     });
 
             }
@@ -90,7 +101,7 @@ angular.module('articleControllers', [])
                         $location.path('view/' + $scope.news.title)
                     })
                     .error(function(response) {
-                         swal("Error!", "Title is empty or has already existed!", "error");
+                        swal('Error!', 'Title is empty or has already existed!', 'error');
                     });
             }
 
@@ -137,12 +148,12 @@ angular.module('articleControllers', [])
 
             $scope.deleteNews = function() {
                 swal({
-                    title: "Are you sure?",
-                    text: "This news will be deleted!",
-                    type: "warning",
+                    title: 'Are you sure?',
+                    text: 'This news will be deleted!',
+                    type: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Yes, delete it!",
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Yes, delete it!',
                     closeOnConfirm: false
                 }, function() {
                     $http({
@@ -152,12 +163,12 @@ angular.module('articleControllers', [])
                             id: $scope.news.id
                         }
                     }).success(function() {
-                        $cookies["refreshList"] = "true";
+                        $cookies['refreshList'] = 'true';
 
                         swal({
-                            title: "Deleted!",
-                            text: "This news has been deleted!",
-                            type: "success",
+                            title: 'Deleted!',
+                            text: 'This news has been deleted!',
+                            type: 'success',
                             timer: 2000,
                             closeOnConfirm: false
                         }, function() {
