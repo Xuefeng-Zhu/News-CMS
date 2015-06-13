@@ -3,16 +3,10 @@
 /* Controllers */
 
 angular.module('articleControllers', [])
-    .controller('CreateCtrl', ['$scope', '$http', 'upload', '$sce', '$cookies', '$location',
-        function($scope, $http, upload, $sce, $cookies, $location) {
-            if (!$cookies['token']) {
-                alert('Please login in');
-                $location.path('/login');
-            }
-            $http.defaults.headers.common['token'] = $cookies['token'];
-
+    .controller('CreateCtrl', ['$scope', '$http', 'upload', '$sce', '$location',
+        function($scope, $http, upload, $sce, $location) {
             $scope.news = {};
-            $scope.tags = []
+            $scope.tags = [];
 
             $scope.submit = function() {
                 $scope.news.content = quill.getHTML();
@@ -23,14 +17,25 @@ angular.module('articleControllers', [])
 
                 $http.put(url + '/news', angular.copy($scope.news))
                     .success(function() {
-                        alert("success");
+                        swal({
+                            title: 'Success!',
+                            text: 'A new article has been created!',
+                            type: 'success',
+                            showCancelButton: true,
+                            cancelButtonText: 'Create More',
+                            confirmButtonText: 'Go to News List',
+                            closeOnConfirm: false
+                        }, function() {
+                            $location.path('/path')
+                        });
+
                         $scope.news = {};
                         $scope.tags = [];
                         $scope.link = '';
                         quill.setText('');
                     })
                     .error(function(response) {
-                        alert("Title is empty or has already existed");
+                        swal('Error!', 'Title is empty or has already existed!', 'error');
                     });
 
             }
@@ -44,7 +49,7 @@ angular.module('articleControllers', [])
                     .success(function(response) {
                         $scope.news = response;
                         quill.setHTML(response.content);
-                    })
+                    });
             }
 
             $scope.insertImage = function() {
@@ -61,14 +66,8 @@ angular.module('articleControllers', [])
             }
         }
     ])
-    .controller('EditCtrl', ['$scope', '$http', 'upload', '$sce', '$routeParams', '$cookies', '$location',
-        function($scope, $http, upload, $sce, $routeParams, $cookies, $location) {
-            if (!$cookies['token']) {
-                alert('Please login in');
-                $location.path('/login');
-            }
-            $http.defaults.headers.common['token'] = $cookies['token'];
-
+    .controller('EditCtrl', ['$scope', '$http', 'upload', '$sce', '$routeParams', '$location',
+        function($scope, $http, upload, $sce, $routeParams, $location) {
             var title = $routeParams['title'];
 
             $http({
@@ -102,7 +101,7 @@ angular.module('articleControllers', [])
                         $location.path('view/' + $scope.news.title)
                     })
                     .error(function(response) {
-                        alert("Title is empty or has already existed");
+                        swal('Error!', 'Title is empty or has already existed!', 'error');
                     });
             }
 
@@ -115,7 +114,7 @@ angular.module('articleControllers', [])
                     .success(function(response) {
                         $scope.news = response;
                         quill.setHTML(response.content);
-                    })
+                    });
             }
 
             $scope.insertImage = function() {
@@ -135,7 +134,6 @@ angular.module('articleControllers', [])
     .controller('ViewCtrl', ['$scope', '$routeParams', '$http', '$sce', '$cookies',
         function($scope, $routeParams, $http, $sce, $cookies) {
             var title = $routeParams['title'];
-            $http.defaults.headers.common['token'] = $cookies['token'];
 
             $http({
                 url: url + '/news',
@@ -149,7 +147,15 @@ angular.module('articleControllers', [])
             })
 
             $scope.deleteNews = function() {
-                if (confirm("Are you sure to delete this news?") == true) {
+                swal({
+                    title: 'Are you sure?',
+                    text: 'This news will be deleted!',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Yes, delete it!',
+                    closeOnConfirm: false
+                }, function() {
                     $http({
                         url: url + '/news',
                         method: 'DELETE',
@@ -157,11 +163,19 @@ angular.module('articleControllers', [])
                             id: $scope.news.id
                         }
                     }).success(function() {
-                        alert("success");
-                        window.close();
-                    })
-                }
-            }
+                        $cookies['refreshList'] = 'true';
 
+                        swal({
+                            title: 'Deleted!',
+                            text: 'This news has been deleted!',
+                            type: 'success',
+                            timer: 2000,
+                            closeOnConfirm: false
+                        }, function() {
+                            window.close();
+                        });
+                    });
+                });
+            };
         }
     ]);

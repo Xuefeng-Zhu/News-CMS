@@ -3,16 +3,11 @@
 /* Controllers */
 
 angular.module('listControllers', []).
-controller('ListCtrl', ['$scope', '$http', '$cookies', '$location',
-    function($scope, $http, $cookies, $location) {
-        if (! $cookies['token']){
-            alert('Please login in');
-            $location.path('/login');
-        }
-        $http.defaults.headers.common['token'] = $cookies['token'];
-
+controller('ListCtrl', ['$scope', '$http', '$cookies',
+    function($scope, $http, $cookies) {
+        $scope.cookies = $cookies;
         $scope.page = 0;
-        $scope.tags = []
+        $scope.tags = [];
 
         $scope.searchNews = function() {
             var data = {
@@ -22,7 +17,7 @@ controller('ListCtrl', ['$scope', '$http', '$cookies', '$location',
             }
 
             angular.forEach($scope.tags, function(tag) {
-                    data.tags.push(tag.name);
+                data.tags.push(tag.name);
             })
 
             $http.post(url + '/search_news', data)
@@ -31,11 +26,18 @@ controller('ListCtrl', ['$scope', '$http', '$cookies', '$location',
                 })
         }
 
-        $scope.changePage = function(num){
+        $scope.changePage = function(num) {
             $scope.page += num;
             $scope.searchNews();
         }
 
         $scope.searchNews();
+
+        $scope.$watch('cookies.refreshList', function(){
+            if ($scope.cookies['refreshList']){
+                $scope.searchNews();
+                $scope.cookies['refreshList'] = undefined;
+            }            
+        });
     }
 ]);
