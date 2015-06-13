@@ -26,7 +26,8 @@ angular.module('articleControllers', [])
                             confirmButtonText: 'Go to News List',
                             closeOnConfirm: false
                         }, function() {
-                            $location.path('/path')
+                            location.replace('#list');
+                            swal.close();
                         });
 
                         $scope.news = {};
