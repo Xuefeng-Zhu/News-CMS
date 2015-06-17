@@ -52,7 +52,12 @@ angular.module('myApp', [
                 redirectTo: '/login'
             });
         }
-    ]);
+    ])
+    .filter('encodeUrl', function() {
+        return function(input) {
+            return encodeURIComponent(input);
+        };
+    });
 
 // var loginUrl = "http://localhost:5000/login"
 var loginUrl = "https://floating-retreat-4846.herokuapp.com/login"

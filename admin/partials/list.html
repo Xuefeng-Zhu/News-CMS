@@ -17,7 +17,7 @@
 			<a class="media-left">
 				<img src="{{news.news_pic}}" width="200px" height="100px">
 			</a>
-			<a class="media-body" href="#/view/{{news.title}}" target="_blank">
+			<a class="media-body" ng-href="#/view/{{news.title | encodeUrl}}" target="_blank">
 				<h4 class="media-heading">{{news.title}}</h4>
 				<p>{{news.abstract}}</p>
 			</a>
