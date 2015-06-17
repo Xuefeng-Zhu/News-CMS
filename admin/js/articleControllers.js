@@ -135,12 +135,11 @@ angular.module('articleControllers', [])
     .controller('ViewCtrl', ['$scope', '$routeParams', '$http', '$sce', '$cookies',
         function($scope, $routeParams, $http, $sce, $cookies) {
             var title = $routeParams['title'];
-            console.log(title);
+
             $http({
                 url: url + '/news',
                 method: 'GET',
                 params: {
-
                     title: title
                 }
             }).success(function(response) {
