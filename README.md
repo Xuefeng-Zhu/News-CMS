@@ -37,3 +37,11 @@ Search News List
 curl http://lit-everglades-2593.herokuapp.com/search_news -X POST -d "search=test" -d "tags=[]" -d "page=0"
 ```
 [API Manual](https://github.com/Xuefeng-Zhu/flask-news-api)
+
++ View article by going to news_url from news list
+
+## Thanks
++ Angular
++ SweetAlert
++ angular-upload
++ ngTagEditor
