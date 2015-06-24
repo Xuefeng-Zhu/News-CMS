@@ -19,6 +19,7 @@ curl http://floating-retreat-4846.herokuapp.com/
 ```
 
 + Login in [Admin] (http://xuefeng-zhu.github.io/News-CMS/admin/) with the account and create news.
++ Go to News List to view news, and click specific news to edit or delete
 + Get new list, which can be displayed on mobile device
 
 ```
