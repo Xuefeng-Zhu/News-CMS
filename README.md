@@ -46,3 +46,6 @@ curl http://lit-everglades-2593.herokuapp.com/search_news -X POST -d "search=tes
 + SweetAlert
 + angular-upload
 + ngTagEditor
+
+## License
+MIT
